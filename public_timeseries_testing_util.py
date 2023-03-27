@@ -8,6 +8,7 @@ ONLY works afer the first three variables in MockAPI.__init__ are populated.
 from typing import Sequence, Tuple
 
 import pandas as pd
+import os
 
 
 class MockApi:
@@ -22,11 +23,12 @@ class MockApi:
                 A call to iter_test serves all rows of all dataframes with the current group ID value.
             export_group_id_column: if true, the dataframes iter_test serves will include the group_id_column values.
         '''
+        abs_path = os.getcwd()
         self.input_paths: Sequence[str] = [
-            "D:/Kaggle/parkinsons-disease-progression-prediction/example_test_files/test.csv",
-            "D:/Kaggle/parkinsons-disease-progression-prediction/example_test_files/test_peptides.csv",
-            "D:/Kaggle/parkinsons-disease-progression-prediction/example_test_files/test_proteins.csv",
-            "D:/Kaggle/parkinsons-disease-progression-prediction/example_test_files/sample_submission.csv",
+            abs_path + "/example_test_files/test.csv",
+            abs_path + "/example_test_files/test_peptides.csv",
+            abs_path + "/example_test_files/test_proteins.csv",
+            abs_path + "/example_test_files/sample_submission.csv",
         ]
         self.group_id_column: str = "group_key"
         self.export_group_id_column: bool = False
